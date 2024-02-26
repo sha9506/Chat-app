@@ -2,16 +2,20 @@ import React, {useState } from "react";
 import sendIcon from '../assets/sendIcon.png';
 
 
-const ChatScreen=()=>
+const ChatScreen=(props)=>
 {
-    const [text, setText]= useState("");
     const [newText, setNewText]= useState('');
     
     const handle=()=>
     {
-        setText(newText);
+        const newchat = {
+            content: newText, 
+            username: props.screen_username, 
+        }
+        
+        props.setTextItems([...props.textItems, newchat]);
     }
-   
+
     const handleChange=(event)=>
     {
         setNewText(event.target.value)
@@ -20,7 +24,12 @@ const ChatScreen=()=>
    
     return (<div className="chat-screen">
              <div className='chat-items'>
-                <div className="text-update">{text}</div>
+
+                {props.textItems.map((item)=>{
+                    return ( <div className={props.screen_username===item.username? 'text-update' : 'text-update-one'}>
+                    {item.content} 
+                </div>)
+                })}
              </div>
              <div className='chat-box'>
         <input className='chat' type='text' value={newText} placeholder='Send text' onChange={handleChange}/>

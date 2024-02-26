@@ -1,15 +1,16 @@
 import React from "react";
 import ChatScreen from "./ChatScreen";
 
-const Screen= () =>
+const Screen= (props) =>
 {
+
     return(<div>
             <div className='screen-one'>
               <div className='screen-header'>
                 <div className='icon'></div>
-                <div className='username'>afsaanaaa_ <br/> Online</div>
+                <div className='username'>{props.screen_username} <br/> Online</div>
               </div>
-              <ChatScreen/>
+              <ChatScreen textItems={props.textItems} screen_username={props.screen_username} setTextItems={props.setTextItems}/>
 
             </div>
            
