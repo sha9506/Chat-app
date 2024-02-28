@@ -4,25 +4,33 @@ import Screen from './components/Screen';
 
 function App() {
 
+  function getCurrentTime() {
+    let now = new Date();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    return hour + ":" + minute;
+  }
+
   const [textItems, setTextItems] = useState(
     [
       {
         username: 'afsaanaa_',
         content: 'hey',
-        time: '18:22',
+        time: getCurrentTime(),
       },
       {
         username: 'riyu_zaki',
         content: 'afsana',
-        time: '18:22',
+        time: getCurrentTime(),
       },
       {
         username: 'afsaanaa_',
         content: 'how are you',
-        time: '18:22',
+        time: getCurrentTime(),
       },
   ]
   )
+  
   
     return ( <div>
         <div className='header'>CHAT HERE</div>

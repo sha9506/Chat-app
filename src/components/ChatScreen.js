@@ -20,14 +20,23 @@ const ChatScreen=(props)=>
     {
         setNewText(event.target.value)
     }
-   
-   
+
+    const removeText=(content,item)=>
+    {
+       if(props.screen_username===item.username){
+        const deleteItems = props.textItems.filter(eachItem=>eachItem.content!==content);
+        props.setTextItems(deleteItems);
+       }    
+    }
+    
     return (<div className="chat-screen">
              <div className='chat-items'>
 
                 {props.textItems.map((item)=>{
-                    return ( <div className={props.screen_username===item.username? 'text-update' : 'text-update-one'}>
-                    {item.content} 
+                    return ( <div 
+                    className={props.screen_username===item.username? 'text-update' : 'text-update-one'}>
+                        <div>{item.content} </div> 
+                        {props.screen_username===item.username? <div className="cross" onClick={()=>removeText(item.content, item)}>X</div> : null}
                 </div>)
                 })}
              </div>
